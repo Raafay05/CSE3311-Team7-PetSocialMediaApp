@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetPixel - Login & Registration</title>
+    <link rel="stylesheet" href="login_registration.css">
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="container" id="loginContainer">
+        <div class="form-container">
+            <div class="logo">
+                <div class="paw-icon">
+                    <div class="paw-pad main-pad"></div>
+                    <div class="paw-pad toe-pad-1"></div>
+                    <div class="paw-pad toe-pad-2"></div>
+                    <div class="paw-pad toe-pad-3"></div>
+                    <div class="paw-pad toe-pad-4"></div>
+                </div>
+            </div>
+            
+            <h1 class="app-title">PetPixel</h1>
+            <h2 class="page-title">welcome</h2>
+            
+            <form class="auth-form" id="loginForm">
+                <input type="text" class="input-field" placeholder="username" id="loginUsername" required>
+                <input type="password" class="input-field" placeholder="password" id="loginPassword" required>
+                
+                <button type="submit" class="primary-btn">Log-in</button>
+                <button type="button" class="secondary-btn" onclick="showRegister()">Create new account</button>
+                <button type="button" class="forgot-password-btn" onclick="showForgotPassword()">Forgot password?</button>
+            </form>
+        </div>
+    </div>
 
+    <!-- Registration Form -->
+    <div class="container hidden" id="registerContainer">
+        <div class="form-container">
+            <div class="logo">
+                <div class="paw-icon">
+                    <div class="paw-pad main-pad"></div>
+                    <div class="paw-pad toe-pad-1"></div>
+                    <div class="paw-pad toe-pad-2"></div>
+                    <div class="paw-pad toe-pad-3"></div>
+                    <div class="paw-pad toe-pad-4"></div>
+                </div>
+            </div>
+            
+            <h2 class="page-title">create a new account</h2>
+            
+            <form class="auth-form" id="registerForm">
+                <input type="text" class="input-field" placeholder="username" id="registerUsername" required>
+                <input type="password" class="input-field" placeholder="password" id="registerPassword" required>
+                <input type="email" class="input-field" placeholder="email" id="registerEmail" required>
+                
+                <button type="submit" class="primary-btn">Create</button>
+                <button type="button" class="back-btn" onclick="showLogin()">Back to login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Forgot Password Form -->
+    <div class="container hidden" id="forgotPasswordContainer">
+        <div class="form-container">
+            <div class="logo">
+                <div class="paw-icon">
+                    <div class="paw-pad main-pad"></div>
+                    <div class="paw-pad toe-pad-1"></div>
+                    <div class="paw-pad toe-pad-2"></div>
+                    <div class="paw-pad toe-pad-3"></div>
+                    <div class="paw-pad toe-pad-4"></div>
+                </div>
+            </div>
+            
+            <h2 class="page-title">reset password</h2>
+            <p class="reset-description">Enter your email address and we'll send you a link to reset your password.</p>
+            
+            <form class="auth-form" id="forgotPasswordForm">
+                <input type="email" class="input-field" placeholder="email" id="forgotEmail" required>
+                
+                <button type="submit" class="primary-btn">Send reset link</button>
+                <button type="button" class="back-btn" onclick="showLogin()">Back to login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Form switching functions
+        function showLogin() {
+            document.getElementById('loginContainer').classList.remove('hidden');
+            document.getElementById('registerContainer').classList.add('hidden');
+            document.getElementById('forgotPasswordContainer').classList.add('hidden');
+        }
+
+        function showRegister() {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('registerContainer').classList.remove('hidden');
+            document.getElementById('forgotPasswordContainer').classList.add('hidden');
+        }
+
+        function showForgotPassword() {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('registerContainer').classList.add('hidden');
+            document.getElementById('forgotPasswordContainer').classList.remove('hidden');
+        }
+
+        // Form submission handlers
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Here you would typically send the data to your server
+            alert(`Login attempt for: ${username}`);
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            const email = document.getElementById('registerEmail').value;
+            
+            // Here you would typically send the data to your server
+            alert(`Account creation attempt for: ${username} (${email})`);
+        });
+
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('forgotEmail').value;
+            
+            // Here you would typically send the reset request to your server
+            alert(`Password reset link sent to: ${email}`);
+            showLogin();
+        });
+    </script>
+</body>
+</html>
