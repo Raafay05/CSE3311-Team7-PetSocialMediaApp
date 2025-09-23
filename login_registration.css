@@ -98,9 +98,9 @@ body {
 
 /* Main paw pad - largest element, positioned at bottom center */
 .main-pad {
-    width: 44px;
-    height: 34px;
-    bottom: 12px;
+    width: 55px;
+    height: 40px;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
@@ -109,45 +109,44 @@ body {
 
 /* Toe pads - smaller elements positioned around main pad */
 .toe-pad-1 {
-    width: 20px;
-    height: 25px;
-    top: 8px;
-    left: 16px;
+    width: 18px;
+    height: 23px;
+    top: 20px;
+    left: 4px;
     border-radius: 60%;
-    transform: rotate(-15deg);
+    transform: rotate(-10deg);
 }
 
 .toe-pad-2 {
     width: 20px;
-    height: 25px;
-    top: 2px;
-    left: 34px;
-    border-radius: 60%;
-    transform: rotate(-5deg);
-}
-
-.toe-pad-3 {
-    width: 20px;
-    height: 25px;
-    top: 2px;
-    right: 34px;
+    height: 26px;
+    top: 5px;
+    left: 46px;
     border-radius: 60%;
     transform: rotate(5deg);
 }
 
-.toe-pad-4 {
+.toe-pad-3 {
     width: 20px;
-    height: 25px;
-    top: 8px;
-    right: 16px;
+    height: 26px;
+    top: 5px;
+    right: 46px;
     border-radius: 60%;
-    transform: rotate(15deg);
+    transform: rotate(-5deg);
+}
+
+.toe-pad-4 {
+    width: 18px;
+    height: 23px;
+    top: 20px;
+    right: 4px;
+    border-radius: 60%;
+    transform: rotate(10deg);
 }
 
 /* Paw pad hover effects - adds interactivity to brand element */
 .paw-logo:hover .paw-pad {
     background: linear-gradient(135deg, #ff9bb5 0%, #ff7a9a 100%);
-    transform: scale(1.05);
 }
 
 /* App title - Primary brand text with careful typography */
