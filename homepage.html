@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+
+        *{
+            
+        }
+
+        html, body{
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter';
+            
+            
+        }
+
+        .container{
+            display: flex;
+            height: 100vh;
+        }
+
+        #sidebar{
+            background-color: #D8F3DC;
+            width: 20%;
+            text-align: center;
+        }
+
+        #title-bar{
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+            border-bottom: 1px solid #52B788;
+        }
+        
+        .nav-buttons{
+            background-color: #D8F3DC;
+            width: 100%;
+            height: 100%;
+            /*border: 1px solid blue;*/
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            gap: 4%;
+            margin-top: 3vh;
+        }
+
+        #home-page{
+            width: 80%;
+        }
+
+        #logo-title{
+            color: #52B788;
+        }
+
+        .navigator-buttons{
+            background-color: #40916C;
+            color: white;
+            border: none;
+            border-radius: 8px;;
+            display: block;
+            width: 80%;
+            height: 5%;
+        }
+
+        .navigator-buttons:hover{
+            cursor: pointer; 
+            background-color: #397e5f; 
+        }
+
+        #page-title{
+            color: #40916C;
+            padding-left: 1vw;
+        }
+
+        #top-bar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #right-section{
+            align-content: center;
+            width: 30%;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        #add-post{
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            background-color: white;
+            border-color: black;
+        }
+
+        #add-post:hover{
+            cursor: pointer; 
+            background-color: #e1e1e1; 
+        }
+
+        #search-users{
+            background-color: #40916C;
+            color: white;
+            border: none;
+            border-radius: 8px;;
+            width:40%;
+            height: 50%;
+        }
+
+        #search-users:hover{
+            cursor: pointer; 
+            background-color: #397e5f; 
+        }
+
+        #feed{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .post{
+            border: 1px solid rgb(180, 180, 180);
+            border-radius: 10px;
+        }
+
+        .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* space between profile picture and username */
+        }
+
+        .post-header img.profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .location-btn {
+            background-color: #52b788;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* MEDIA */
+        .post-media img,
+        .post-media video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ACTIONS */
+        .post-actions {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            gap: 10px;
+        }
+
+        .like-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* CAPTION */
+        .post-caption {
+            padding: 0 15px 15px 15px;
+        }
+
+        .username {
+            font-weight: 700;
+            margin-right: 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="sidebar">
+            <div id="title-bar">
+                <h1 id="logo-title">PetPals</h1>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="navigator-buttons" onclick="goToHomepage()">Home</button>
+                <button class="navigator-buttons" onclick="goToVetAI()">VetAI</button>
+                <button class="navigator-buttons" onclick="goToMessages()">Messages</button>
+                <button class="navigator-buttons" onclick="goToProfile()">Profile</button>
+            </div>
+    
+        </div>
+    
+        <div id="home-page">
+            <div id="top-bar">
+                <div>
+                    <h2 id="page-title">Home</h2>
+                </div>
+                <div id="right-section">
+                    <button id="search-users">Search Users</button>
+                    <button id="add-post">+</button>
+                </div>
+            </div>
+    
+            <div id="feed">
+                <div class="post">
+                    <div class="post-header">
+                        <div class="header-left">
+                            <img src="profile_pic.png" alt="Profile" class="profile-pic">
+                            <h3 id="username-header">username1</h3>
+                          </div>
+                          <button class="location-btn"></button>
+                    </div>
+              
+                    <div class="post-media">
+                      <img src="cat.png" alt="Post media">
+                    </div>
+              
+                    <div class="post-actions">
+                      <button class="like-btn">❤️</button>
+                    </div>
+              
+                    <div class="post-caption">
+                      <span class="username">username1</span>
+                      kitty cat 🌞
+                    </div>
+                  </div>
+
+                  <div class="post">
+                    <div class="post-header">
+                        <div class="header-left">
+                            <img src="profile_pic.png" alt="Profile" class="profile-pic">
+                            <h3 id="username-header">username2</h3>
+                          </div>
+                          <button class="location-btn"></button>
+                    </div>
+              
+                    <div class="post-media">
+                      <img src="dog.png" alt="Post media">
+                    </div>
+              
+                    <div class="post-actions">
+                      <button class="like-btn">❤️</button>
+                    </div>
+              
+                    <div class="post-caption">
+                      <span class="username">username2</span>
+                      doggy dog 🌞
+                    </div>
+                  </div>
+
+                  <div class="post">
+                    <div class="post-header">
+                        <div class="header-left">
+                            <img src="profile_pic.png" alt="Profile" class="profile-pic">
+                            <h3 id="username-header">username3</h3>
+                          </div>
+                          <button class="location-btn"></button>
+                    </div>
+              
+                    <div class="post-media">
+                      <img src="fish.png" alt="Post media">
+                    </div>
+              
+                    <div class="post-actions">
+                      <button class="like-btn">❤️</button>
+                    </div>
+              
+                    <div class="post-caption">
+                      <span class="username">username3</span>
+                      fishy fish 🌞
+                    </div>
+                  </div>
+            </div>
+    
+        </div>
+    </div>
+
+    <script>
+        function goToHomepage() {
+            window.location.href = 'homepage.html'; 
+        }
+
+        function goToVetAI() {
+            window.location.href = 'vetAI.html'; 
+        }
+
+        function goToMessages() {
+            window.location.href = 'messages.html'; 
+        }
+
+        function goToProfile() {
+            window.location.href = 'profilepage.html'; 
+        }
+    </script>
+
+</body>

@@ -1,0 +1,704 @@
+/* 
+ * PawPals Authentication Styles
+ * Modern, accessible, and user-focused design system
+ * Organized by component hierarchy for maintainability
+ */
+
+/* ===== RESET & BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== LAYOUT COMPONENTS ===== */
+
+/* Main application container - centers content and provides responsive behavior */
+.app-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Form wrapper - provides consistent spacing and animation foundation */
+.form-wrapper {
+    width: 100%;
+    animation: slideInUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hidden state for form switching - important for user flow */
+.hidden {
+    display: none !important;
+}
+
+/* Main authentication card - elevated design with proper shadow hierarchy */
+.auth-card {
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 32px 64px rgba(0, 0, 0, 0.12),
+        0 16px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ===== BRAND IDENTITY ===== */
+
+/* Brand header section - establishes visual hierarchy and brand recognition */
+.brand-header {
+    margin-bottom: 32px;
+}
+
+/* Paw logo - Core brand element with detailed CSS art implementation */
+.paw-logo {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 24px;
+    transition: transform 0.3s ease;
+}
+
+.paw-logo:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+/* Individual paw pad components - carefully positioned for realistic appearance */
+.paw-pad {
+    position: absolute;
+    background: linear-gradient(135deg, #ffc1cc 0%, #ff9bb5 100%);
+    border: 2.5px solid #2d5a3d;
+    transition: all 0.3s ease;
+}
+
+/* Main paw pad - largest element, positioned at bottom center */
+.main-pad {
+    width: 55px;
+    height: 40px;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Toe pads - smaller elements positioned around main pad */
+.toe-pad-1 {
+    width: 18px;
+    height: 23px;
+    top: 20px;
+    left: 4px;
+    border-radius: 60%;
+    transform: rotate(-10deg);
+}
+
+.toe-pad-2 {
+    width: 20px;
+    height: 26px;
+    top: 5px;
+    left: 46px;
+    border-radius: 60%;
+    transform: rotate(5deg);
+}
+
+.toe-pad-3 {
+    width: 20px;
+    height: 26px;
+    top: 5px;
+    right: 46px;
+    border-radius: 60%;
+    transform: rotate(-5deg);
+}
+
+.toe-pad-4 {
+    width: 18px;
+    height: 23px;
+    top: 20px;
+    right: 4px;
+    border-radius: 60%;
+    transform: rotate(10deg);
+}
+
+/* Paw pad hover effects - adds interactivity to brand element */
+.paw-logo:hover .paw-pad {
+    background: linear-gradient(135deg, #ff9bb5 0%, #ff7a9a 100%);
+}
+
+/* App title - Primary brand text with careful typography */
+.app-title {
+    font-size: 56px;
+    font-weight: 800;
+    color: #2d5a3d;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+    text-shadow: 0 2px 4px rgba(45, 90, 61, 0.1);
+    background: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Page subtitle - Secondary heading with softer appearance */
+.page-subtitle {
+    font-size: 28px;
+    color: #6eb07a;
+    margin-bottom: 16px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+/* Welcome text - Descriptive text for user guidance */
+.welcome-text {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    opacity: 0.9;
+}
+
+/* ===== FORM COMPONENTS ===== */
+
+/* Main form container - provides consistent spacing and structure */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+/* Input group - Container for input field, error message, and help text */
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+/* Form inputs - Core interactive elements with enhanced UX */
+.form-input {
+    width: 100%;
+    padding: 18px 20px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #e8f5e8 0%, #d4f5d4 100%);
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    font-weight: 500;
+}
+
+.form-input::placeholder {
+    color: #666;
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+}
+
+/* Input focus states - Critical for accessibility and user feedback */
+.form-input:focus {
+    background: linear-gradient(135deg, #d4f5d4 0%, #c8f2c8 100%);
+    border-color: #6eb07a;
+    box-shadow: 
+        0 0 0 4px rgba(110, 176, 122, 0.15),
+        0 4px 12px rgba(110, 176, 122, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-input:focus::placeholder {
+    opacity: 0.6;
+}
+
+/* Input validation states - Important for user guidance */
+.form-input:invalid {
+    border-color: #e74c3c;
+    background: linear-gradient(135deg, #fdf2f2 0%, #f8e6e6 100%);
+}
+
+.form-input:valid {
+    border-color: #27ae60;
+}
+
+/* ===== BUTTON SYSTEM ===== */
+
+/* Base button styles - Foundation for all button variants */
+.btn-base {
+    width: 100%;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    outline: none;
+}
+
+/* Primary button - Main call-to-action styling */
+.btn-primary {
+    @extend .btn-base;
+    background: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
+    color: white;
+    box-shadow: 0 8px 16px rgba(45, 90, 61, 0.3);
+    margin-top: 8px;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1a3d28 0%, #2d5a3d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(45, 90, 61, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(45, 90, 61, 0.3);
+}
+
+/* Secondary button - Alternative action styling */
+.btn-secondary {
+    @extend .btn-base;
+    background: linear-gradient(135deg, #6eb07a 0%, #5ea068 100%);
+    color: white;
+    box-shadow: 0 6px 12px rgba(110, 176, 122, 0.25);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #5ea068 0%, #4d8c56 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(110, 176, 122, 0.3);
+}
+
+/* Link button - Text-based actions */
+.btn-link {
+    background: none;
+    border: none;
+    color: #6eb07a;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 12px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.btn-link:hover {
+    color: #2d5a3d;
+    background: rgba(110, 176, 122, 0.1);
+    text-decoration: none;
+}
+
+/* Button loading states - Critical for async operation feedback */
+.btn-primary:disabled,
+.btn-secondary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Loading spinner - Visual feedback during async operations */
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== FORM ACTIONS ===== */
+
+/* Container for secondary form actions */
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* ===== CHECKBOX COMPONENTS ===== */
+
+/* Checkbox group container - Ensures proper spacing and alignment */
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 8px 0;
+    text-align: left;
+}
+
+/* Custom checkbox label - Improves click target and styling control */
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    user-select: none;
+}
+
+/* Hide native checkbox - Replace with custom styling */
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Custom checkbox appearance - Accessible and visually consistent */
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #6eb07a;
+    border-radius: 4px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Checkbox checked state - Clear visual feedback */
+.checkbox-input:checked + .checkbox-custom {
+    background: #6eb07a;
+    border-color: #6eb07a;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Checkbox focus state - Accessibility requirement */
+.checkbox-input:focus + .checkbox-custom {
+    box-shadow: 0 0 0 3px rgba(110, 176, 122, 0.2);
+}
+
+/* ===== ERROR HANDLING ===== */
+
+/* Error message styling - Critical for user guidance and form validation */
+.error-message {
+    display: block;
+    color: #e74c3c;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
+    min-height: 18px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+}
+
+/* Show error state - Smooth animation for better UX */
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Help text - Provides user guidance for input requirements */
+.help-text {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-top: 4px;
+    opacity: 0.8;
+}
+
+/* ===== SUCCESS MESSAGING ===== */
+
+/* Success message container - Positive user feedback */
+.success-message {
+    text-align: center;
+    padding: 24px;
+    background: linear-gradient(135deg, #d5f4d5 0%, #c8f2c8 100%);
+    border-radius: 16px;
+    border: 1px solid #6eb07a;
+    margin-top: 16px;
+}
+
+/* Success icon - Visual indicator for positive outcomes */
+.success-icon {
+    width: 48px;
+    height: 48px;
+    background: #27ae60;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto 16px;
+    animation: successBounce 0.6s ease;
+}
+
+@keyframes successBounce {
+    0%, 60%, 100% { transform: scale(1); }
+    30% { transform: scale(1.1); }
+}
+
+/* ===== NOTIFICATION SYSTEM ===== */
+
+/* Notification container - Fixed positioning for system-wide alerts */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Individual notification styling - Consistent alert design */
+.notification {
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: notificationSlide 0.4s ease;
+    max-width: 320px;
+    position: relative;
+}
+
+/* Notification variants - Different states with appropriate colors */
+.notification-success {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.notification-error {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.notification-info {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+@keyframes notificationSlide {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ===== LINK STYLING ===== */
+
+/* Form links - Consistent styling for inline links */
+.link {
+    color: #6eb07a;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #2d5a3d;
+    text-decoration: none;
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Main entrance animation - Smooth page entry */
+@keyframes slideInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Mobile-first responsive breakpoints - Ensures usability across devices */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 16px;
+        max-width: 100%;
+    }
+    
+    .auth-card {
+        padding: 32px 24px;
+        border-radius: 20px;
+    }
+    
+    .app-title {
+        font-size: 44px;
+        letter-spacing: -1.5px;
+    }
+    
+    .page-subtitle {
+        font-size: 24px;
+    }
+    
+    .paw-logo {
+        width: 72px;
+        height: 72px;
+    }
+    
+    .main-pad {
+        width: 36px;
+        height: 28px;
+    }
+    
+    .toe-pad-1, .toe-pad-2, .toe-pad-3, .toe-pad-4 {
+        width: 16px;
+        height: 20px;
+    }
+    
+    .toe-pad-1 {
+        left: 14px;
+    }
+    
+    .toe-pad-2 {
+        left: 28px;
+    }
+    
+    .toe-pad-3 {
+        right: 28px;
+    }
+    
+    .toe-pad-4 {
+        right: 14px;
+    }
+    
+    .notification-container {
+        left: 16px;
+        right: 16px;
+        top: 16px;
+    }
+    
+    .notification {
+        max-width: 100%;
+    }
+}
+
+/* Tablet breakpoint - Optimizes for mid-size screens */
+@media (max-width: 768px) and (min-width: 481px) {
+    .app-container {
+        max-width: 400px;
+    }
+    
+    .auth-card {
+        padding: 36px 28px;
+    }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+
+/* High contrast mode support - Ensures accessibility compliance */
+@media (prefers-contrast: high) {
+    .form-input {
+        border: 2px solid #333;
+    }
+    
+    .form-input:focus {
+        border-color: #000;
+        box-shadow: 0 0 0 3px #000;
+    }
+    
+    .btn-primary {
+        background: #000;
+        border: 2px solid #000;
+    }
+    
+    .btn-secondary {
+        background: #333;
+        border: 2px solid #333;
+    }
+}
+
+/* Reduced motion support - Respects user preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .paw-logo:hover {
+        transform: none;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none;
+    }
+}
+
+/* Focus visible - Modern focus indicator */
+*:focus-visible {
+    outline: 2px solid #6eb07a;
+    outline-offset: 2px;
+}
+
+/* ===== PRINT STYLES ===== */
+
+/* Print optimization - Ensures form is printable if needed */
+@media print {
+    body {
+        background: white;
+    }
+    
+    .auth-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        background: white !important;
+        color: black !important;
+        border: 1px solid black !important;
+    }
+    
+    .notification-container {
+        display: none;
+    }
+}
