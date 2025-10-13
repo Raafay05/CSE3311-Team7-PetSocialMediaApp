@@ -243,10 +243,10 @@
                 document.getElementById('forgotPasswordForm').addEventListener('submit', this.handleForgotPassword.bind(this));
 
                 // Real-time validation for better UX
-                document.getElementById('registerUsername').addEventListener('input', this.validateUsername);
-                document.getElementById('registerEmail').addEventListener('input', this.validateEmail);
-                document.getElementById('registerPassword').addEventListener('input', this.validatePassword);
-                document.getElementById('confirmPassword').addEventListener('input', this.validatePasswordConfirm);
+                document.getElementById('registerUsername').addEventListener('input', this.validateUsername.bind(this));
+                document.getElementById('registerEmail').addEventListener('input', this.validateEmail.bind(this));
+                document.getElementById('registerPassword').addEventListener('input', this.validatePassword.bind(this));
+                document.getElementById('confirmPassword').addEventListener('input', this.validatePasswordConfirm.bind(this));
             }
 
             /**
