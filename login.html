@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawPals - Login & Registration</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="login_registration.css">
 </head>
 <body>
     <!-- Main Application Container -->
@@ -22,7 +22,7 @@
                         <div class="paw-pad toe-pad-4"></div>
                     </div>
                     <h1 class="app-title">PawPals</h1>
-                    <h2 class="page-subtitle">welcome</h2>
+                    <h2 class="page-subtitle">Welcome</h2>
                 </div>
                 
                 <!-- Login Authentication Form -->
@@ -30,7 +30,7 @@
                     <div class="input-group">
                         <input type="text" 
                                class="form-input" 
-                               placeholder="username" 
+                               placeholder="Username" 
                                id="loginUsername" 
                                required 
                                aria-label="Username"
@@ -41,7 +41,7 @@
                     <div class="input-group">
                         <input type="password" 
                                class="form-input" 
-                               placeholder="password" 
+                               placeholder="Password" 
                                id="loginPassword" 
                                required 
                                aria-label="Password"
@@ -86,7 +86,7 @@
                         <div class="paw-pad toe-pad-3"></div>
                         <div class="paw-pad toe-pad-4"></div>
                     </div>
-                    <h2 class="page-subtitle">create a new account</h2>
+                    <h2 class="page-subtitle">Create a new account</h2>
                     <p class="welcome-text">Join the PawPals community and share your pet's adventures!</p>
                 </div>
                 
@@ -94,7 +94,7 @@
                     <div class="input-group">
                         <input type="text" 
                                class="form-input" 
-                               placeholder="username" 
+                               placeholder="Username" 
                                id="registerUsername" 
                                required 
                                aria-label="Choose a username"
@@ -108,7 +108,7 @@
                     <div class="input-group">
                         <input type="email" 
                                class="form-input" 
-                               placeholder="email" 
+                               placeholder="Email" 
                                id="registerEmail" 
                                required 
                                aria-label="Email address"
@@ -119,14 +119,13 @@
                     <div class="input-group">
                         <input type="password" 
                                class="form-input" 
-                               placeholder="password" 
+                               placeholder="Password" 
                                id="registerPassword" 
                                required 
                                aria-label="Create a password"
                                autocomplete="new-password"
                                minlength="8">
                         <span class="error-message" id="registerPasswordError"></span>
-                        <span class="help-text">At least 8 characters with letters and numbers</span>
                     </div>
                     
                     <div class="input-group">
@@ -138,6 +137,7 @@
                                aria-label="Confirm your password"
                                autocomplete="new-password">
                         <span class="error-message" id="confirmPasswordError"></span>
+                        <span class="help-text">At least 8 characters with letters and numbers</span>
                     </div>
                     
                     <!-- Terms acceptance - legal requirement -->
@@ -243,10 +243,10 @@
                 document.getElementById('forgotPasswordForm').addEventListener('submit', this.handleForgotPassword.bind(this));
 
                 // Real-time validation for better UX
-                document.getElementById('registerUsername').addEventListener('input', this.validateUsername.bind(this));
-                document.getElementById('registerEmail').addEventListener('input', this.validateEmail.bind(this));
-                document.getElementById('registerPassword').addEventListener('input', this.validatePassword.bind(this));
-                document.getElementById('confirmPassword').addEventListener('input', this.validatePasswordConfirm.bind(this));
+                document.getElementById('registerUsername').addEventListener('input', this.validateUsername);
+                document.getElementById('registerEmail').addEventListener('input', this.validateEmail);
+                document.getElementById('registerPassword').addEventListener('input', this.validatePassword);
+                document.getElementById('confirmPassword').addEventListener('input', this.validatePasswordConfirm);
             }
 
             /**
@@ -291,8 +291,11 @@
                     }
 
                     this.showNotification('Login successful! Welcome back to PawPals!', 'success');
-
-                    window.location.href = 'homepage.html'; 
+                    
+                    // In real app: redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1500);
 
                 } catch (error) {
                     this.showNotification('Login failed. Please check your credentials.', 'error');
