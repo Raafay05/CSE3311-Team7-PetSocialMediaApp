@@ -187,7 +187,6 @@ body {
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 0px;
     text-align: left;
 }
 
@@ -258,7 +257,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
     text-decoration: none;
     outline: none;
 }
@@ -268,7 +266,7 @@ body {
     background: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
     color: white;
     box-shadow: 0 8px 16px rgba(45, 90, 61, 0.3);
-    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -304,7 +302,6 @@ body {
     font-weight: 500;
     cursor: pointer;
     text-decoration: underline;
-    padding: 12px;
     transition: all 0.3s ease;
     border-radius: 8px;
 }
@@ -346,23 +343,20 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 8px;
 }
 
 /* ===== CHECKBOX COMPONENTS ===== */
 
 /* Checkbox group container - Ensures proper spacing and alignment */
 .checkbox-group {
-    display: flex;
     align-items: flex-start;
-    gap: 0px;
     margin: 2px 0;
     text-align: left;
 }
 
 /* Custom checkbox label - Improves click target and styling control */
 .checkbox-label {
-    display: flex;
+    display: inline-flex;
     align-items: flex-start;
     gap: 12px;
     cursor: pointer;
@@ -370,6 +364,13 @@ body {
     line-height: 1.5;
     color: #555;
     user-select: none;
+    white-space: normal;        /* allow text wrapping */
+}
+
+.checkbox-text {
+  white-space: normal;
+  display: inline; /* or block — both work fine */
+  word-break: normal;
 }
 
 /* Hide native checkbox - Replace with custom styling */
@@ -392,6 +393,8 @@ body {
     transition: all 0.3s ease;
     flex-shrink: 0;
     margin-top: 2px;
+    margin-bottom: 20px;
+
 }
 
 /* Checkbox checked state - Clear visual feedback */
