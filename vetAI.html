@@ -117,18 +117,22 @@
             padding: 0.7rem 1rem;
             border-radius: 12px;
             line-height: 1.4;
+            white-space: pre-wrap;
         }
 
         .received {
             background-color: #ffffff;
             border: 1px solid black;
             align-self: flex-start;
+            line-height: 1.4;
+            white-space: pre-wrap;
         }
 
         .sent {
             background-color: #40916c;
             color: white;
             align-self: flex-end;
+            white-space: pre-wrap;
         }
 
     /* ===== Input Bar ===== */
@@ -199,7 +203,7 @@
                 <div class="chat-container">
                     
                     <div class="messages" id="chatMessages">
-                      <div class="message received">Hello!</div>
+                      <!--<div class="message received">Hello!</div>-->
                     </div>
                 
                     <div class="message-input">
@@ -208,70 +212,9 @@
                     </div>
                   </div>
             </div>
-    
+            <script src = "script.js"></script>
         </div>
-    </div>
-
-    <script>
-        function goToHomepage() {
-            window.location.href = 'homepage.html'; 
-        }
-
-        function goToVetAI() {
-            window.location.href = 'vetAI.html'; 
-        }
-
-        function goToMessages() {
-            window.location.href = 'messages.html'; 
-        }
-
-        function goToProfile() {
-            window.location.href = 'profilepage.html'; 
-        }
-
-        const sendBtn = document.getElementById('sendButton');
-        const input = document.getElementById('messageInput');
-        const chat = document.getElementById('chatMessages');
-
-
-        sendBtn.addEventListener('click', () => {
-        const text = input.value.trim();
-        if (text) {
-            const msg = document.createElement('div');
-            msg.className = 'message sent';
-            msg.textContent = text;
-            chat.appendChild(msg);
-            input.value = '';
-            chat.scrollTop = chat.scrollHeight;
-        }
-        });
-
-        input.addEventListener('keypress', e => {
-            if (e.key === 'Enter') sendBtn.click();
-        });
-
-
-        const initialPage =  document.getElementById('initial-page');
-        const aiChat = document.getElementById('ai-chat');
-        var inputBox = document.getElementById("input-box");
-        inputBox.addEventListener("keydown", function(event) {
-        // Check if the pressed key is the Enter key
-        if (event.key === "Enter") {
-            initialPage.classList.add('hidden');
-            aiChat.classList.remove('hidden');
-
-            const text = inputBox.value.trim();
-            if (text) {
-                const msg = document.createElement('div');
-                msg.className = 'message sent';
-                msg.textContent = text;
-                chat.appendChild(msg);
-                inputBox.value = '';
-                chat.scrollTop = chat.scrollHeight;
-            }
-        }
-    });
         
-    </script>
+    </div>
 
 </body>
