@@ -6,199 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-
-        *{
-            
-        }
-
-        html, body{
-            height: 100%;
-            margin: 0;
-            font-family: 'Inter';
-            
-            
-        }
-
-        .container{
-            display: flex;
-            height: 100vh;
-        }
-
-        #sidebar{
-            background-color: #D8F3DC;
-            width: 20%;
-            text-align: center;
-        }
-
-        #title-bar{
-            padding-top: 1vh;
-            padding-bottom: 1vh;
-            border-bottom: 1px solid #52B788;
-        }
-        
-        .nav-buttons{
-            background-color: #D8F3DC;
-            width: 100%;
-            height: 100%;
-            /*border: 1px solid blue;*/
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            gap: 4%;
-            margin-top: 3vh;
-        }
-
-        #home-page{
-            width: 80%;
-        }
-
-        #logo-title{
-            color: #52B788;
-        }
-
-        .navigator-buttons{
-            background-color: #40916C;
-            color: white;
-            border: none;
-            border-radius: 8px;;
-            display: block;
-            width: 80%;
-            height: 5%;
-        }
-
-        .navigator-buttons:hover{
-            cursor: pointer; 
-            background-color: #397e5f; 
-        }
-
-        #page-title{
-            color: #40916C;
-            padding-left: 1vw;
-        }
-
-        #top-bar{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-
-        #right-section{
-            align-content: center;
-            width: 30%;
-            text-align: right;
-            margin-right: 10px;
-        }
-
-        #add-post{
-            border-radius: 100%;
-            width: 30px;
-            height: 30px;
-            font-size: 20px;
-            background-color: white;
-            border-color: black;
-        }
-
-        #add-post:hover{
-            cursor: pointer; 
-            background-color: #e1e1e1; 
-        }
-
-        #search-users{
-            background-color: #40916C;
-            color: white;
-            border: none;
-            border-radius: 8px;;
-            width:40%;
-            height: 50%;
-        }
-
-        #search-users:hover{
-            cursor: pointer; 
-            background-color: #397e5f; 
-        }
-
-        #feed{
-            display: grid;
-            align-items: center;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            width: 90%;
-            max-width: 1200px;
-        }
-
-        .post{
-            border: 1px solid rgb(180, 180, 180);
-            border-radius: 10px;
-        }
-
-        .post-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px; /* space between profile picture and username */
-        }
-
-        .post-header img.profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .location-btn {
-            background-color: #52b788;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        /* MEDIA */
-        .post-media img,
-        .post-media video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ACTIONS */
-        .post-actions {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            gap: 10px;
-        }
-
-        .like-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        /* CAPTION */
-        .post-caption {
-            padding: 0 15px 15px 15px;
-        }
-
-        .username {
-            font-weight: 700;
-            margin-right: 5px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style/homepage.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+   
 </head>
 
 <body>
@@ -217,40 +28,40 @@
     
         </div>
     
-        <div id="home-page">
+        <div id="home-page" class="">
             <div id="top-bar">
                 <div>
                     <h2 id="page-title">Home</h2>
                 </div>
                 <div id="right-section">
                     <button id="search-users">Search Users</button>
-                    <button id="add-post">+</button>
+                    <button id="add-post" onclick="addPost()">+</button>
                 </div>
             </div>
     
             <div id="feed">
-                <div class="post">
-                    <div class="post-header">
-                        <div class="header-left">
-                            <img src="profile_pic.png" alt="Profile" class="profile-pic">
-                            <h3 id="username-header">username1</h3>
-                          </div>
-                          <button class="location-btn"></button>
-                    </div>
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="header-left">
+                                <img src="profile_pic.png" alt="Profile" class="profile-pic">
+                                <h3 id="username-header">username1</h3>
+                            </div>
+                            <button class="location-btn" onclick="showLocation(this)">48.8584, 2.2945</button>
+                        </div>
               
-                    <div class="post-media">
-                      <img src="cat.png" alt="Post media">
-                    </div>
+                        <div class="post-media">
+                            <img src="cat.png" alt="Post media">
+                        </div>
               
-                    <div class="post-actions">
-                      <button class="like-btn">❤️</button>
-                    </div>
+                        <div class="post-actions">
+                            <button class="like-btn">❤️</button>
+                        </div>
               
-                    <div class="post-caption">
-                      <span class="username">username1</span>
-                      kitty cat 🌞
+                        <div class="post-caption">
+                            <span class="username">username1</span>
+                            kitty cat 🌞
+                        </div>
                     </div>
-                  </div>
 
                   <div class="post">
                     <div class="post-header">
@@ -258,7 +69,7 @@
                             <img src="profile_pic.png" alt="Profile" class="profile-pic">
                             <h3 id="username-header">username2</h3>
                           </div>
-                          <button class="location-btn"></button>
+                          <button class="location-btn" onclick="showLocation(this)">27.1751, 78.0421</button>
                     </div>
               
                     <div class="post-media">
@@ -281,7 +92,7 @@
                             <img src="profile_pic.png" alt="Profile" class="profile-pic">
                             <h3 id="username-header">username3</h3>
                           </div>
-                          <button class="location-btn"></button>
+                          <button class="location-btn" onclick="showLocation(this)">38.8977, 77.0365</button>
                     </div>
               
                     <div class="post-media">
@@ -297,8 +108,32 @@
                       fishy fish 🌞
                     </div>
                   </div>
+
+
+
             </div>
     
+        </div>
+
+        <div class="popup-overlay" id="popup-overlay">
+            <div class="popup-content">
+              <div id="map"></div>
+            </div>
+          </div>
+
+        <div id="add-post-page" class="hidden">
+            <div>
+                <button id="back-button" onclick="backToHome()">←</button>
+            </div>
+            <div class="create-post">
+                    <div class="upload-area" id="uploadArea">
+                    +
+                    <input type="file" id="fileInput" accept="image/*,video/*">
+                  </div>
+                <textarea class="caption-input" placeholder="Write a caption..."></textarea>
+                <button class="location-button">Tag location</button>
+                <button class="location-button" onclick="createPost()">Add post</button>
+              </div>
         </div>
     </div>
 
@@ -318,6 +153,140 @@
         function goToProfile() {
             window.location.href = 'profilepage.html'; 
         }
+
+        const homePage = document.getElementById("home-page");
+        const addPostPage = document.getElementById("add-post-page");
+
+        function backToHome(){
+            homePage.classList.remove("hidden");
+            addPostPage.classList.add("hidden");
+        }
+
+        function addPost(){
+            homePage.classList.add("hidden");
+            addPostPage.classList.remove("hidden");
+        }
+
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // Remove existing preview if any
+        uploadArea.innerHTML = '';
+        uploadArea.appendChild(fileInput);
+
+        const fileURL = URL.createObjectURL(file);
+
+        if (file.type.startsWith('image/')) {
+            const img = document.createElement('img');
+            img.src = fileURL;
+            uploadArea.appendChild(img);
+        } else if (file.type.startsWith('video/')) {
+            const video = document.createElement('video');
+            video.src = fileURL;
+            video.controls = true;
+            uploadArea.appendChild(video);
+        }
+        });
+
+        function createPost(){
+            const feed = document.getElementById("feed");
+            const post = document.createElement("div");
+            post.classList.add("post");
+
+            const fileInput = document.getElementById("fileInput");
+            const captionInput = document.querySelector(".caption-input");
+            const file = fileInput.files[0];
+            const captionText = captionInput.value.trim() || "";
+
+            // Create media element
+            let mediaHTML = "";
+
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+
+                if (file.type.startsWith("image/")) {
+                mediaHTML = `<img src="${fileURL}" alt="Post media">`;
+                } else if (file.type.startsWith("video/")) {
+                mediaHTML = `<video src="${fileURL}" controls></video>`;
+                }
+            } else {
+                // Fallback image if no file was uploaded
+                mediaHTML = `<img src="cat.png" alt="Post media">`;
+            }
+
+            post.innerHTML = `
+                <div class="post-header">
+                    <div class="header-left">
+                        <img src="profile_pic.png" alt="Profile" class="profile-pic">
+                        <h3 id="username-header">username1</h3>
+                    </div>
+                    <button class="location-btn" onclick="showLocation(this)">32.7310, -97.1150</button>
+                </div>
+        
+                <div class="post-media">
+                    ${mediaHTML}
+                </div>
+        
+                <div class="post-actions">
+                    <button class="like-btn">❤️</button>
+                </div>
+        
+                <div class="post-caption">
+                    <span class="username">username1</span>
+                    ${captionText}
+                </div>
+            `    
+            ;
+
+            feed.appendChild(post);
+
+            fileInput.value = "";
+            captionInput.value = "";
+            const uploadArea = document.getElementById("uploadArea");
+            uploadArea.innerHTML = "+";
+            uploadArea.appendChild(fileInput);
+
+            backToHome();
+        }
+    
+        
+        
+        const popupOverlay = document.getElementById('popup-overlay');
+
+        var map = L.map('map').setView([32.7310, -97.1150], 20);
+        L.tileLayer('https://api.maptiler.com/maps/base-v4/{z}/{x}/{y}.png?key=24wki6qF8iMB4OiU1zOY', {
+        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+        }).addTo(map);
+        var marker = L.marker([32.7310, -97.1150]).addTo(map);
+
+        function showLocation(btn){
+            /*
+            const coordsText = btn.innerHTML;
+
+            const parts = coordsText.split(',');
+            const lat = parseFloat(parts[0].trim());
+            const lng = parseFloat(parts[1].trim());
+
+            //const newLatLng = L.latLng(lat, lng);
+            map.setView([lat,lng], 20); 
+            marker.setLatLng([lat,lng]);
+            */
+            popupOverlay.classList.add('active');
+        }
+
+        popupOverlay.addEventListener('click', (event) => {
+            if (event.target === popupOverlay) {
+                popupOverlay.classList.remove('active');
+            }
+            map = null;
+            marker = null;
+        });
     </script>
 
 </body>
