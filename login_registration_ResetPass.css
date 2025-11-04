@@ -12,7 +12,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
     display: flex;
@@ -47,7 +47,7 @@ body {
 
 /* Main authentication card - elevated design with proper shadow hierarchy */
 .auth-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95); /* #ffae34*/
     backdrop-filter: blur(20px);
     border-radius: 24px;
     padding: 40px 32px;
@@ -92,7 +92,7 @@ body {
 .paw-pad {
     position: absolute;
     background: linear-gradient(135deg, #ffc1cc 0%, #ff9bb5 100%);
-    border: 2.5px solid #2d5a3d;
+    border: 2.5px solid #000000;
     transition: all 0.3s ease;
 }
 
@@ -153,11 +153,11 @@ body {
 .app-title {
     font-size: 56px;
     font-weight: 800;
-    color: #2d5a3d;
+    color: #3e75df;
     margin-bottom: 8px;
     letter-spacing: -2px;
     text-shadow: 0 2px 4px rgba(45, 90, 61, 0.1);
-    background: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
+    background: #3e75df;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -166,8 +166,8 @@ body {
 /* Page subtitle - Secondary heading with softer appearance */
 .page-subtitle {
     font-size: 28px;
-    color: #6eb07a;
-    margin-bottom: 16px;
+    color: #3e75df;
+    margin-bottom:16px;
     font-weight: 400;
     letter-spacing: -0.5px;
 }
@@ -179,6 +179,10 @@ body {
     line-height: 1.5;
     margin-bottom: 20px;
     opacity: 0.9;
+}
+
+.instructions-text{
+    margin-bottom: -15px;
 }
 
 /* ===== FORM COMPONENTS ===== */
@@ -202,7 +206,7 @@ body {
     padding: 18px 20px;
     border: 2px solid transparent;
     border-radius: 16px;
-    background: linear-gradient(135deg, #e8f5e8 0%, #d4f5d4 100%);
+    background: #ffffff;
     font-size: 16px;
     color: #333;
     outline: none;
@@ -218,8 +222,8 @@ body {
 
 /* Input focus states - Critical for accessibility and user feedback */
 .form-input:focus {
-    background: linear-gradient(135deg, #d4f5d4 0%, #c8f2c8 100%);
-    border-color: #6eb07a;
+    background: #3e75df40;
+    border-color: #3e75df;
     box-shadow: 
         0 0 0 4px rgba(110, 176, 122, 0.15),
         0 4px 12px rgba(110, 176, 122, 0.1);
@@ -237,7 +241,7 @@ body {
 }
 
 .form-input:valid {
-    border-color: #27ae60;
+    border-color: #3e75df;
 }
 
 /* ===== BUTTON SYSTEM ===== */
@@ -263,14 +267,14 @@ body {
 
 /* Primary button - Main call-to-action styling */
 .btn-primary {
-    background: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
+    background: #3e75df;
     color: white;
     box-shadow: 0 8px 16px rgba(45, 90, 61, 0.3);
     margin-bottom: 8px;
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: linear-gradient(135deg, #1a3d28 0%, #2d5a3d 100%);
+    background:  linear-gradient(135deg, #3e75df 0%, #725cee 100%);
     transform: translateY(-2px);
     box-shadow: 0 12px 24px rgba(45, 90, 61, 0.4);
 }
@@ -282,13 +286,16 @@ body {
 
 /* Secondary button - Alternative action styling */
 .btn-secondary {
-    background: linear-gradient(135deg, #6eb07a 0%, #5ea068 100%);
-    color: white;
-    box-shadow: 0 6px 12px rgba(110, 176, 122, 0.25);
+    background-color: white;        
+    color: #3e75df;               
+    border: 2px solid #3e75df;      
+    cursor: pointer;
+    transition: all 0.3s ease;     
+    box-shadow: 0 6px 12px rgba(62, 117, 223, 0.15); 
 }
 
 .btn-secondary:hover:not(:disabled) {
-    background: linear-gradient(135deg, #5ea068 0%, #4d8c56 100%);
+    background: linear-gradient(135deg, #3e75df75 0%, #725cee75 100%);
     transform: translateY(-1px);
     box-shadow: 0 8px 16px rgba(110, 176, 122, 0.3);
 }
@@ -297,7 +304,7 @@ body {
 .btn-link {
     background: none;
     border: none;
-    color: #6eb07a;
+    color: #3e75df;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -307,8 +314,7 @@ body {
 }
 
 .btn-link:hover {
-    color: #2d5a3d;
-    background: rgba(110, 176, 122, 0.1);
+    color: #3e75df;
     text-decoration: none;
 }
 
@@ -350,7 +356,6 @@ body {
 /* Checkbox group container - Ensures proper spacing and alignment */
 .checkbox-group {
     align-items: flex-start;
-    margin: 2px 0;
     text-align: left;
 }
 
@@ -384,7 +389,7 @@ body {
 .checkbox-custom {
     width: 20px;
     height: 20px;
-    border: 2px solid #6eb07a;
+    border: 2px solid #3e75df;
     border-radius: 4px;
     background: white;
     display: flex;
@@ -392,15 +397,13 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     flex-shrink: 0;
-    margin-top: 2px;
-    margin-bottom: 20px;
-
+    margin-bottom: 10px;
 }
 
 /* Checkbox checked state - Clear visual feedback */
 .checkbox-input:checked + .checkbox-custom {
-    background: #6eb07a;
-    border-color: #6eb07a;
+    background: #3e75df;
+    border-color: #3e75df;
 }
 
 .checkbox-input:checked + .checkbox-custom::after {
@@ -423,7 +426,8 @@ body {
     color: #e74c3c;
     font-size: 13px;
     font-weight: 500;
-    margin-top: 6px;
+    margin-bottom: 8px;
+    margin-left: 10px;
     min-height: 18px;
     opacity: 0;
     transform: translateY(-4px);
@@ -441,7 +445,7 @@ body {
     display: block;
     color: #666;
     font-size: 12px;
-    margin-top: 4px;
+    margin-left: 10px;
     opacity: 0.8;
 }
 
@@ -449,12 +453,15 @@ body {
 
 /* Success message container - Positive user feedback */
 .success-message {
+    width: 315px;
+    height: 180px;
     text-align: center;
-    padding: 24px;
+    padding: 18px;
     background: linear-gradient(135deg, #d5f4d5 0%, #c8f2c8 100%);
     border-radius: 16px;
     border: 1px solid #6eb07a;
-    margin-top: 16px;
+    margin-top: 4px;
+    margin-bottom: 12px;
 }
 
 /* Success icon - Visual indicator for positive outcomes */
@@ -469,7 +476,7 @@ body {
     color: white;
     font-size: 24px;
     font-weight: bold;
-    margin: 0 auto 16px;
+    margin: 0 auto 8px;
     animation: successBounce 0.6s ease;
 }
 
@@ -531,13 +538,13 @@ body {
 
 /* Form links - Consistent styling for inline links */
 .link {
-    color: #6eb07a;
+    color: #3e75df;
     text-decoration: underline;
     transition: color 0.3s ease;
 }
 
 .link:hover {
-    color: #2d5a3d;
+    color: #725cee;
     text-decoration: none;
 }
 
@@ -675,7 +682,7 @@ body {
 
 /* Focus visible - Modern focus indicator */
 *:focus-visible {
-    outline: 2px solid #6eb07a;
+    outline: 2px solid #725cee90;
     outline-offset: 2px;
 }
 
