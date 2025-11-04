@@ -1,0 +1,331 @@
+
+        
+        html, body{
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter';
+            
+            
+        }
+
+        #map{
+            position: absolute;
+            height: 49%;
+            width: 50%;
+        }
+
+        .popup-overlay {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            z-index: 999; 
+            visibility: hidden; 
+            opacity: 0; 
+            transition: visibility 0s, opacity 0.3s ease-in-out; 
+          }
+          
+          /* When the overlay is active, make it visible and blur the background */
+          .popup-overlay.active {
+            visibility: visible;
+            opacity: 1;
+            backdrop-filter: blur(5px); /* Apply the blur effect */
+            -webkit-backdrop-filter: blur(5px); /* For Webkit browsers */
+          }
+          
+          /* Styling for the actual pop-up content */
+          .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            height: 50%;
+            text-align: center;
+          }
+
+        .hidden{
+            display: none;
+        }
+
+        .container{
+            display: flex;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #sidebar{
+            background-color: #D8F3DC;
+            width: 20%;
+            text-align: center;
+        }
+
+        #title-bar{
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+            border-bottom: 1px solid #52B788;
+        }
+        
+        .nav-buttons{
+            background-color: #D8F3DC;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            gap: 4%;
+            margin-top: 3vh;
+        }
+
+        #add-post-page{
+            width: 80%;
+            align-items: center;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+        }
+
+        #back-button{
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+
+        }
+
+        .create-post {
+            margin-top: 10px;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+          }
+      
+          /* Large rectangle for image upload */
+          .upload-area {
+            width: 100%;
+            height: 250px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            color: #888;
+            font-size: 40px;
+            overflow: hidden;
+            position: relative;
+          }
+      
+          .upload-area:hover {
+            border-color: #777;
+            color: #555;
+          }
+      
+          .upload-area img,
+          .upload-area video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+      
+          /* Hidden file input */
+          #fileInput {
+            display: none;
+          }
+      
+          /* Caption text area */
+          .caption-input {
+            width: 100%;
+            height: 80px;
+            resize: none;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 14px;
+            outline: none;
+          }
+      
+          .caption-input:focus {
+            border-color: #888;
+          }
+      
+          /* Location button */
+          .location-button {
+            align-self: flex-start;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+          }
+      
+          .location-button:hover {
+            background-color: #0056b3;
+          }
+
+        #back-button:hover{
+            cursor: pointer; 
+            background-color: #e1e1e1; 
+        }
+
+        #home-page{
+            width: 80%;
+        }
+
+        #logo-title{
+            color: #52B788;
+        }
+
+        .navigator-buttons{
+            background-color: #40916C;
+            color: white;
+            border: none;
+            border-radius: 8px;;
+            display: block;
+            width: 80%;
+            height: 5%;
+        }
+
+        .navigator-buttons:hover{
+            cursor: pointer; 
+            background-color: #397e5f; 
+        }
+
+        #page-title{
+            color: #40916C;
+            padding-left: 1vw;
+        }
+
+        #top-bar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #right-section{
+            align-content: center;
+            width: 30%;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        #add-post{
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            background-color: white;
+            border-color: black;
+        }
+
+        #add-post:hover{
+            cursor: pointer; 
+            background-color: #e1e1e1; 
+        }
+
+        #search-users{
+            background-color: #40916C;
+            color: white;
+            border: none;
+            border-radius: 8px;;
+            width:40%;
+            height: 50%;
+        }
+
+        #search-users:hover{
+            cursor: pointer; 
+            background-color: #397e5f; 
+        }
+
+        #feed{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .post{
+            border: 1px solid rgb(180, 180, 180);
+            border-radius: 10px;
+        }
+
+        .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* space between profile picture and username */
+        }
+
+        .post-header img.profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .location-btn {
+            background-color: #52b788;
+            color: #52b788;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0px;
+        }
+
+        /* MEDIA */
+        .post-media img,
+        .post-media video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ACTIONS */
+        .post-actions {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            gap: 10px;
+        }
+
+        .like-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* CAPTION */
+        .post-caption {
+            padding: 0 15px 15px 15px;
+        }
+
+        .username {
+            font-weight: 700;
+            margin-right: 5px;
+        }
