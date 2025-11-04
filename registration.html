@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="login_registration_ResetPass.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Registration Form - New user onboarding -->
+    <div class="app-container">
+        <div class="form-wrapper" id="registerContainer">
+            <div class="auth-card">
+                <div class="brand-header">
+                    <div class="paw-logo">
+                        <div class="paw-pad main-pad"></div>
+                        <div class="paw-pad toe-pad-1"></div>
+                        <div class="paw-pad toe-pad-2"></div>
+                        <div class="paw-pad toe-pad-3"></div>
+                        <div class="paw-pad toe-pad-4"></div>
+                    </div>
+                    <h2 class="page-subtitle">Create a new account</h2>
+                    <p class="welcome-text">Join the PawPals community and share your pet's adventures!</p>
+                </div>
+                
+                <form class="auth-form" id="registerForm" novalidate>
+                    <div class="input-group">
+                        <input type="text" 
+                               class="form-input" 
+                               placeholder="Username" 
+                               id="registerUsername" 
+                               required 
+                               aria-label="Choose a username"
+                               autocomplete="username"
+                               minlength="3"
+                               maxlength="20">
+                        <span class="error-message" id="registerUsernameError"></span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="email" 
+                               class="form-input" 
+                               placeholder="Email" 
+                               id="registerEmail" 
+                               required 
+                               aria-label="Email address"
+                               autocomplete="email">
+                        <span class="help-text">3-20 characters, letters and numbers only</span>
+                        <span class="error-message" id="registerEmailError"></span>
+
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="password" 
+                               class="form-input" 
+                               placeholder="Password" 
+                               id="registerPassword" 
+                               required 
+                               aria-label="Create a password"
+                               autocomplete="new-password"
+                               minlength="8">
+                        <span class="help-text">At least 8 characters with letters and numbers</span>
+                        <span class="error-message" id="registerPasswordError"></span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="password" 
+                               class="form-input" 
+                               placeholder="Confirm Password" 
+                               id="confirmPassword" 
+                               required 
+                               aria-label="Confirm your password"
+                               autocomplete="new-password">
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+                    
+                    <!-- Terms acceptance - legal requirement -->
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="acceptTerms" class="checkbox-input" required>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">
+                                I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
+                            </span>
+                        </label>
+                        <span class="error-message" id="termsError"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" id="registerBtn">
+                        <span class="btn-text" onclick="AuthController.goToHomePage()">Create Account</span>
+                        <div class="loading-spinner hidden"></div>
+                    </button>
+                    
+                    <button type="button" class="btn-secondary" onclick="AuthController.goToLogin()">
+                        Back to login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="authentication.js" defer></script>
+</body>
+</html>
