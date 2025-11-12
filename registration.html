@@ -81,7 +81,7 @@
                             <input type="checkbox" id="acceptTerms" class="checkbox-input" required>
                             <span class="checkbox-custom"></span>
                             <span class="checkbox-text">
-                                I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
+                                I agree to the <a href="#" class="link" onClick="AuthController.openTermsOfService()">Terms of Service</a> and <a href="#" onClick="AuthController.openPrivacyPolicy()" class="link">Privacy Policy</a>
                             </span>
                         </label>
                         <span class="error-message" id="termsError"></span>
@@ -93,7 +93,7 @@
                     </button>
                     
                     <button type="button" class="btn-secondary" onclick="AuthController.goToLogin()">
-                        Back to login
+                        Back to Login
                     </button>
                 </form>
             </div>
