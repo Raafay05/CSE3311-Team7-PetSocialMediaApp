@@ -313,6 +313,16 @@ class AuthController {
         }
     }
 
+    static openTermsOfService() 
+    {
+        window.open("TermsOfService.html", "_blank");
+    }
+    
+    static openPrivacyPolicy()
+    {
+        window.open("PrivacyPolicy.html", "_blank");
+    }
+
     /**
         * Handle forgot password form submission
         * @param {Event} e - Form submission event
