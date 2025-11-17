@@ -112,7 +112,7 @@ async function botReply(userMessage) {
                     ]
                 },
                 contents: {
-                        parts: [{ text: userMessage }]
+                    parts: [{ text: userMessage }]
                 },
                 generationConfig: {
                     temperature: 0.5
