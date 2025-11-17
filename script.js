@@ -80,7 +80,7 @@ inputBox.addEventListener("keydown", function(event) {
 
 //Get AI response and output it in message box
 async function botReply(userMessage) {
-    const API_KEY = "AIzaSyB-ym9pfEueRx4JpNVvFjM1TGzbL82xoNs";
+    const API_KEY = "AIzaSyDTNAgbX8yp4kZVikvuAyUy5Cwlet-L_N0";
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
     const chat = document.getElementById('chatMessages');
@@ -90,11 +90,33 @@ async function botReply(userMessage) {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                contents: [
-                    {
-                        parts: [{ text: userMessage }],
-                    },
-                ],
+                system_instruction: {
+                    parts: [{ 
+                                text: "Only answer questions about pets as a pet expert."
+                            },
+                            {
+                                text: "Include questions about vets and veterinarians."
+                            },
+                            {
+                                text: "If asked about any other topic except expanding upon a specific pet-related question: 'Sorry, I can only answer appropiate pet-related questions.'"
+                            },
+                            {
+                                text: "Look for the nearest veterinarians with provided information and include their rating" 
+                            },
+                            {
+                                text: "Add an disclaimer to answers related to pet care that says they may not be entirely accurate, if not mentioned"
+                            },
+                            {
+                                text: "Remove the double asterisk from answers for cleaner formatting, and add a space between each sentence or numbered list item"
+                            },
+                    ]
+                },
+                contents: {
+                        parts: [{ text: userMessage }]
+                },
+                generationConfig: {
+                    temperature: 0.5
+                }
             }),
         });
 
@@ -110,7 +132,6 @@ async function botReply(userMessage) {
     }
     catch (error) {
         console.error("Error:", error)
-
         receiveMsg("Please input another question.");
     }
 }
