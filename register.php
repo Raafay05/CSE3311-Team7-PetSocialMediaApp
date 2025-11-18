@@ -2,27 +2,37 @@
 
 include('db_connect.php');
 
+header('Content-Type: application/json');
+
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = password_hash($_POSTR['password'], PASSWORD_DEFAULT);
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $username = trim($data['username']);
+    $email = trim($data['email']);
+    $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
     $check = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $check->bind_param("s", $email);
     $check->execute();
     $result = $check->get_result();
 
-    if($result->num_rows > 0)
+    if($result->num_rows > 0) 
     {
-        echo "Email already registered.";
-    }
+        echo json_encode(['success' => false, 'message' => 'Email already registered.']);
+    } 
     else 
     {
         $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $password);
-        $stmt->execute();
-        echo "Registration successful! <a href='login.html'>Login here</a>";
+        if($stmt->execute())
+        {
+            echo json_encode(['success' => true, 'message' => 'Registration successful!']);
+        } 
+        else 
+        {
+            echo json_encode(['success' => false, 'message' => 'Database error. Please try again.']);
+        }
     }
 }
 ?>
