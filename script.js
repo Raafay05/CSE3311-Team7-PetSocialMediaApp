@@ -14,6 +14,10 @@ function goToProfile() {
     window.location.href = 'profilepage.html'; 
 }
 
+function goToSettings() {
+    window.location.href = 'settings.html'; 
+}
+
 function sendMsg(message) {
     const input = document.getElementById('messageInput');
     const chat = document.getElementById('chatMessages');
@@ -90,10 +94,9 @@ async function botReply(userMessage) {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                system_instruction: {
+                system_instruction: { 
                     parts: [{ 
-                                text: "Only answer questions about pets as a pet expert."
-                            },
+                                text: "Only answer questions about pets as a pet expert." },
                             {
                                 text: "Include questions about vets and veterinarians."
                             },
@@ -112,9 +115,9 @@ async function botReply(userMessage) {
                     ]
                 },
                 contents: {
-                        parts: [{ text: userMessage }]
+                    parts: [{ text: userMessage }]
                 },
-                generationConfig: {
+                generationConfig: { 
                     temperature: 0.5
                 }
             }),
