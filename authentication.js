@@ -33,16 +33,16 @@ class AuthController {
         if (forgotPasswordForm) forgotPasswordForm.addEventListener('submit', this.handleForgotPassword.bind(this));
 
         const registerUsername = document.getElementById('registerUsername');
-        if (registerUsername) registerUsername.addEventListener('input', this.validateUsername);
+        if (registerUsername) registerUsername.addEventListener('input', (e) => AuthController.validateUsername(e));
 
         const registerEmail = document.getElementById('registerEmail');
-        if (registerEmail) registerEmail.addEventListener('input', this.validateEmail);
+        if (registerEmail) registerEmail.addEventListener('input', (e) => AuthController.validateEmail(e));
 
         const registerPassword = document.getElementById('registerPassword');
-        if (registerPassword) registerPassword.addEventListener('input', this.validatePassword);
+        if (registerPassword) registerPassword.addEventListener('input', (e) => AuthController.validatePassword(e));
 
         const confirmPassword = document.getElementById('confirmPassword');
-        if (confirmPassword) confirmPassword.addEventListener('input', this.validatePasswordConfirm);
+        if (confirmPassword) confirmPassword.addEventListener('input', (e) => AuthController.validatePasswordConfirm(e));
     }
 
     /**
@@ -477,6 +477,11 @@ class AuthController {
         window.location.href = "ResetPassword.html";
     }
 
+    static goToHomepage()
+    {
+        window.location.href = "homepage.html";
+    }
+
     /**
      * UI Helper Methods
      */
@@ -532,15 +537,21 @@ class AuthController {
      * @param {string} message - Notification message
      * @param {string} type - Notification type (success, error, info)
      */
-    static showNotification(message, type = 'info') {
+
+    static showNotification(message, type = 'info') 
+    {
         const container = document.getElementById('notificationContainer');
+        if (!container) {
+            console.warn('Notification container not found.');
+            return;
+        }
+
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.textContent = message;
 
         container.appendChild(notification);
 
-        // Auto-remove after 5 seconds
         setTimeout(() => {
             notification.remove();
         }, 5000);
@@ -641,22 +652,23 @@ class AuthTests {
     /**
      * Test form switching functionality
      */
-    static testFormSwitching() {
-        console.log('Testing form switching...');
-        
-        // Test initial state
-        console.assert(!document.getElementById('loginContainer').classList.contains('hidden'), 'Login should be visible initially');
-        
-        // Test switching to register
+    static testFormSwitching() 
+    {
+        const loginContainer = document.getElementById('loginContainer');
+        const registerContainer = document.getElementById('registerContainer');
+
+        if (!loginContainer || !registerContainer) {
+            console.warn('Skipping form switching tests because containers are not present on this page.');
+            return;
+        }
+
+        console.assert(!loginContainer.classList.contains('hidden'), 'Login should be visible initially');
         AuthController.goToRegister();
-        console.assert(document.getElementById('loginContainer').classList.contains('hidden'), 'Login should be hidden after switching');
-        console.assert(!document.getElementById('registerContainer').classList.contains('hidden'), 'Register should be visible');
-        
-        // Test switching back to login
+        console.assert(loginContainer.classList.contains('hidden'), 'Login should be hidden after switching');
+        console.assert(!registerContainer.classList.contains('hidden'), 'Register should be visible');
         AuthController.goToLogin();
-        console.assert(!document.getElementById('loginContainer').classList.contains('hidden'), 'Login should be visible again');
-        console.assert(document.getElementById('registerContainer').classList.contains('hidden'), 'Register should be hidden');
-        
+        console.assert(!loginContainer.classList.contains('hidden'), 'Login should be visible again');
+        console.assert(registerContainer.classList.contains('hidden'), 'Register should be hidden');
         console.log('✓ Form switching tests passed');
     }
 }
