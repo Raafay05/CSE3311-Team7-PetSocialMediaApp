@@ -360,7 +360,8 @@ class AuthController {
         
         const email = document.getElementById('forgotEmail').value.trim();
 
-        if (!this.validateEmail(email, 'forgotEmailError')) {
+        if (!this.validateEmail(email, 'forgotEmailError')) 
+        {
             return;
         }
 
@@ -378,6 +379,32 @@ class AuthController {
             this.showNotification('Failed to send reset link. Please try again.', 'error');
         } finally {
             this.setLoadingState('forgotBtn', false);
+        }
+    }
+
+    static async submitResetPassword(token) 
+    {
+        const password = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) 
+        {
+            alert("Passwords do not match");
+            return;
+        }
+
+        const response = await fetch('reset_password.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ token, password })
+        });
+
+        const result = await response.json();
+        alert(result.message);
+
+        if (result.success) 
+        {
+            window.location.href = 'login.html';
         }
     }
 
@@ -497,7 +524,11 @@ class AuthController {
         window.location.href = "registration.html";
     }
 
-    static goToReset() {
+    static goToForgotPass() {
+        window.location.href = "ForgotPassword.html";
+    }
+
+    static goToResetPass() {
         window.location.href = "ResetPassword.html";
     }
 
