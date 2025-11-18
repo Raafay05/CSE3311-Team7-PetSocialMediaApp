@@ -45,11 +45,10 @@ class AuthController {
         if (confirmPassword) confirmPassword.addEventListener('input', (e) => AuthController.validatePasswordConfirm(e));
     }
 
-    /**
-     * Handle user registration form submission
-     * @param {Event} e - Form submission event
-     */
-    static async handleRegister(e) {
+    //Registration
+
+    static async handleRegister(e) 
+    {
         e.preventDefault();
         
         const formData = {
@@ -60,26 +59,39 @@ class AuthController {
             acceptTerms: document.getElementById('acceptTerms').checked
         };
 
-        // Comprehensive validation
-        if (!this.validateRegistrationForm(formData)) {
+        if (!this.validateRegistrationForm(formData)) 
+        {
             return;
         }
 
-        try {
+        try 
+        {
             this.setLoadingState('registerBtn', true);
-            
-            // Simulate API call
-            await this.simulateAPICall(2000);
-            
-            this.showNotification('Account created successfully! Welcome to PawPals!', 'success');
-            
-            // Auto-login after successful registration
-            setTimeout(() => {
-                this.goToLogin();
-                document.getElementById('loginUsername').value = formData.username;
-            }, 1500);
+
+            // Send data to PHP backend
+            const response = await fetch('register.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.showNotification('Account created successfully! Welcome to PawPals!', 'success');
+
+                // Auto-login after registration
+                setTimeout(() => {
+                    this.goToLogin();
+                    document.getElementById('loginUsername').value = formData.username;
+                }, 1500);
+
+            } else {
+                this.showNotification(result.message || 'Registration failed. Please try again.', 'error');
+            }
 
         } catch (error) {
+            console.error(error);
             this.showNotification('Registration failed. Please try again.', 'error');
         } finally {
             this.setLoadingState('registerBtn', false);
@@ -87,58 +99,74 @@ class AuthController {
     }
 
     /**
-        * Load remembered user credentials if "Remember me" was checked
-        * High-priority user convenience feature
-        */
-    static loadRememberedUser() {
-        const rememberedUsername = localStorage.getItem('rememberedUsername');
-        if (rememberedUsername) {
-            document.getElementById('loginUsername').value = rememberedUsername;
-            document.getElementById('rememberMe').checked = true;
-        }
-    }
-
-    /**
      * Handle user login form submission
      * @param {Event} e - Form submission event
      */
-    static async handleLogin(e) {
+    static async handleLogin(e) 
+    {
         e.preventDefault();
         
         const username = document.getElementById('loginUsername').value.trim();
         const password = document.getElementById('loginPassword').value;
         const rememberMe = document.getElementById('rememberMe').checked;
 
-        // Client-side validation
-        if (!this.validateLoginForm(username, password)) {
-            return;
-        }
+        if (!this.validateLoginForm(username, password)) return;
 
         try {
             this.setLoadingState('loginBtn', true);
-            
-            // Simulate API call - replace with actual backend integration
-            await this.simulateAPICall(1500);
-            
-            // Handle remember me functionality
-            if (rememberMe) {
-                localStorage.setItem('rememberedUsername', username);
+
+            // Send credentials to PHP
+            const response = await fetch('login.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Handle "remember me"
+                if (rememberMe) {
+                    localStorage.setItem('rememberedUsername', username);
+                } else {
+                    localStorage.removeItem('rememberedUsername');
+                }
+
+                this.showNotification('Login successful! Welcome back to PawPals!', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'homepage.html';
+                }, 1500);
             } else {
-                localStorage.removeItem('rememberedUsername');
+                this.showNotification(result.message || 'Invalid credentials', 'error');
             }
 
-            this.showNotification('Login successful! Welcome back to PawPals!', 'success');
-            
-            // In real app: redirect to dashboard
-            setTimeout(() => {
-                window.location.href = 'homepage.html';
-            }, 1500);
         } catch (error) {
-            this.showNotification('Login failed. Please check your credentials.', 'error');
+            console.error(error);
+            this.showNotification('Login failed. Please try again.', 'error');
         } finally {
             this.setLoadingState('loginBtn', false);
         }
     }
+
+    /**
+        * Load remembered user credentials if "Remember me" was checked
+        * High-priority user convenience feature
+        */
+    static loadRememberedUser() 
+    {
+        const rememberedUsername = localStorage.getItem('rememberedUsername');
+        const loginUsername = document.getElementById('loginUsername');
+        const rememberMe = document.getElementById('rememberMe');
+
+        if (rememberedUsername && loginUsername) {
+            loginUsername.value = rememberedUsername;
+        }
+        if (rememberMe) {
+            rememberMe.checked = !!rememberedUsername;
+        }
+    }
+
 
     /**
     * Comprehensive login form validation
@@ -339,9 +367,6 @@ class AuthController {
         try {
             this.setLoadingState('forgotBtn', true);
             
-            // Simulate API call
-            await this.simulateAPICall(1500);
-            
             // Show success message
             document.getElementById('forgotPasswordForm').classList.add('hidden');
             document.getElementById('resetSuccessMessage').classList.remove('hidden');
@@ -355,7 +380,6 @@ class AuthController {
             this.setLoadingState('forgotBtn', false);
         }
     }
-
 
     /**
      * Username validation with real-time feedback
@@ -555,23 +579,6 @@ class AuthController {
         setTimeout(() => {
             notification.remove();
         }, 5000);
-    }
-
-    /**
-     * Simulate API calls for demonstration
-     * @param {number} delay - Delay in milliseconds
-     */
-    static simulateAPICall(delay) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Simulate occasional failures for testing
-                if (Math.random() > 0.9) {
-                    reject(new Error('Simulated API failure'));
-                } else {
-                    resolve();
-                }
-            }, delay);
-        });
     }
 }
 
