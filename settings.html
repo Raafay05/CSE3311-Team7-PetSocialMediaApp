@@ -115,7 +115,7 @@
         }
 
     /* Buttons */
-        .follow-stats {
+        .setting {
             display: flex;
             gap: 15px;
         }
@@ -131,7 +131,7 @@
             transition: background 0.2s;
         }
 
-        .fsetting-btn:hover {
+        .setting-btn:hover {
             background-color: #40916c;
         }
 
@@ -194,69 +194,6 @@
             font-weight: 600;
         }
 
-        /* MEDIA */
-        .post-media img,
-        .post-media video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ACTIONS */
-        .post-actions {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            gap: 10px;
-        }
-
-        .like-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        /* CAPTION */
-        .post-caption {
-            padding: 0 15px 15px 15px;
-        }
-
-        .username {
-            font-weight: 700;
-            margin-right: 5px;
-        }
-
-        /* ===== Messages ===== */
-    .messages {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      scroll-behavior: smooth;
-    }
-
-    .message {
-      max-width: 70%;
-      margin-bottom: 1rem;
-      padding: 0.7rem 1rem;
-      border-radius: 12px;
-      line-height: 1.4;
-    }
-
-    .received {
-      background-color: #ffffff;
-      border: 1px solid black;
-      align-self: flex-start;
-    }
-
-    .sent {
-      background-color: #40916c;
-      color: white;
-      align-self: flex-end;
-    }
-
     /* ===== Input Bar ===== */
     .message-input {
       display: flex;
@@ -315,7 +252,7 @@
                 <div class="user-info">
                     <h2 id="username">username1</h2>
                     <p id="bio">user bio~ 🌱</p>
-                    <div class="settings">
+                    <div class="setting">
                         <button class="setting-btn" onclick = "editProPic()">Edit Profile Picture</button>
                         <button class="setting-btn" onclick="editDesc()">Edit Profile Bio</button>
                         <button class="setting-btn" onclick="editName()">Edit Username</button>
@@ -364,11 +301,6 @@
             window.location.href = 'settings.html'; 
         }
 
-        function goThere() {
-            messagesPage.classList.toggle('hidden');
-            messages.classList.toggle('hidden');
-        }
-
         const nameInput = document.getElementById("username-input");
         const nameOutput = document.getElementById("username");
 
@@ -385,17 +317,20 @@
         sendNameBtn.addEventListener('click', () => {
             const text = nameInput.value.trim();
             if (text) {
-                nameOutput.textContent = nameInput.value;
+                nameOutput.textContent = text;
                 localStorage.setItem("newUsername", text); 
+                nameInput.value = '';
             }
         });
 
         sendBioBtn.addEventListener('click', () => {
             const text = bioInput.value.trim();
             if (text) {
-                bioOutput.textContent = bioInput.value;
+                bioOutput.textContent = text;
                 localStorage.setItem("newBio", text); 
+                bioInput.value = '';
             }
+           
         });
 
         nameInput.addEventListener('keypress', e => {
