@@ -81,14 +81,14 @@
                             <input type="checkbox" id="acceptTerms" class="checkbox-input" required>
                             <span class="checkbox-custom"></span>
                             <span class="checkbox-text">
-                                I agree to the <a href="#" class="link" onClick="AuthController.openTermsOfService()">Terms of Service</a> and <a href="#" onClick="AuthController.openPrivacyPolicy()" class="link">Privacy Policy</a>
+                                I agree to the <a href="#" class="link" onclick="AuthController.openTermsOfService()">Terms of Service</a> and <a href="#" onclick="AuthController.openPrivacyPolicy()" class="link">Privacy Policy</a>
                             </span>
                         </label>
                         <span class="error-message" id="termsError"></span>
                     </div>
                     
                     <button type="submit" class="btn-primary" id="registerBtn">
-                        <span class="btn-text" onclick="AuthController.goToHomePage()">Create Account</span>
+                        <span class="btn-text" onclick="AuthController.goToHomepage()">Create Account</span>
                         <div class="loading-spinner hidden"></div>
                     </button>
                     
